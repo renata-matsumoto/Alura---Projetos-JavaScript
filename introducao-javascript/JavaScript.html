@@ -1,0 +1,170 @@
+/* 
+
+DOM (Document Objetc Model)
+Representação do HTML para o nosso JavaScript, acessível por uma palavra do JavaScript chamada document.
+
+O document é uma variável muito importante do JS. Ela contém o DOM, que é como navegador enxerga o HTMl utilizado por ele para renderizar a página.
+
+O navegador, ao ler o seu arquivo HTML, cria uma cópia em memória daquele HTML e a partir dessa cópia ele vai desenhando a sua página, colocando as tags e aplicando os estilos. Esta cópia é o que chamamos de DOM uma representação em memória do HTML do seu arquivo, que o navegador usa para desenhar a página, e a variável document é quem contêm o DOM.
+
+
+
+
+QuerySelector() - utilizamos para pesquisar somente um pedaço do código.
+
+A função querySelector faz a busca através de seletores CSS para trazer o HTML que você está interessado.
+
+Ex:
+document.querySelector("h1");
+
+
+TextContent - permite pegar o texto 
+Ex:
+
+<!-- ...
+<script>
+    var titulo = document.querySelector("h1");
+    console.log(titulo);
+    console.log(titulo.textContent);
+</script> -->
+
+
+Como utilizar o console é algo bastante corriqueiro, podemos nos aproveitar dos atalhos CTRL + SHIFT + J (Win/Linux) ou CMD + ALT + J (Google Chrome no Mac. No Safari, o atalho é CONTROL + ALT + C, com o menu "Develop" ativado) para ter acesso ao console de modo rápido.
+
+Se queremos modificar um estilo de um elemento selecionado com o JavaScript, devemos primeiro acessar a propriedade style, que contém todos os estilos daquele elemento. 
+
+
+Depois temos que especificar qual estilo desejamos alterar, que nesse caso seria a cor.
+
+paragrafo.style.color = "blue";
+paragrafo.style.color = "rgb(0,0,255)";
+
+<script>
+    var paragrafo = document.querySelector("#latim");
+    paragrafo.style.backgroundColor = "blue";
+</script>
+
+A propriedade classList nos devolvem um objeto que tem algumas propriedades especiais que falam sobre as característica do HTML.
+
+Neste capítulo aprendemos a lidar uma coleção de elementos do HTML e vimos:
+
+Como selecionar diversos elementos com a função querySelectorAll()
+Relembramos um método clássico de iteração com o for
+Vimos como manipular estilos com a propriedade .style
+Vimos que devemos utilizar camelCase quando queremos modificar uma propriedade que tenha duas palavras, como a background-color
+A boa prática de não alterar o estilo diretamente no Javascript e sim modificar as classes dos elementos com a propriedade .classList
+
+--------
+Como faremos para detectar o exato momento em que o usuário clicará no botão e, então, executar uma ação?
+
+A ação de "perceber o que o usuário está fazendo na página" é o que chamamos de evento do browser, que pode ser escutado com o JavaScript. Ações como clicar, duplo clique, scrollar, passar o mouse em cima, são exemplos dos tipos de interação que o usuário pode fazer com a página.
+
+Para escutarmos um evento de clique, devemos especificar em qual elemento queremos fazê-lo. Se queremos identificar o momento do clique do botão, usaremos a variável titulo seguida de um "escutador de evento" que escutará as interações dos usuários, addEventListener(). Ela será responsável por adicionar o escutador de evento, como já diz o nome traduzido para o português. Em que tipo de evento estamos interessados? No caso, justamente no evento de click. Queremos que algo aconteça quando o usuário clicar no elemento. Indicaremos o que deve ser feito usando-se a função mostraMensagem(). Dentro dela, adicionaremos console.log("Olá, eu fui clicado!").
+
+titulo.addEventListener("click", mostraMensagem);
+
+function mostraMensagem(){
+    console.log("Olá eu fui clicado!");
+}
+
+
+--------
+
+O comportamento padrão do botão que se encontra no formulário é limpar os dados preenchidos nos campos, recarregar a página e enviar os dados. Nós queremos evitar esse comportamento padrão.
+
+Para isso, devemos chamar uma função característica dos eventos, que faz com que o evento não faça seu comportamento padrão. Desta forma, ele não executará este comportamento e reagirá conforme o que pedimos no evento, no caso, a exibição de uma mensagem. Implementaremos a função event.preventDefault():
+
+var botaoAdicionar = document.querySelector("#adicionar-paciente");
+botaoAdicionar.addEventListener("click", function(event) {
+    event.preventDefault();
+    console.log("Oi eu sou o botao e fui clicado");
+});
+
+Essa função faz exatamente o que seu nome diz, prevenindo o comportamento padrão do evento. Mas para utilizá-la, receberemos como segundo parâmetro a função anônima, o event.
+
+------------
+
+Neste capítulo implementamos a criação de usuários a partir de um formulário, e com isso aprendemos:
+
+A diferença entre as funções nomeadas e as funções anônimas
+A escutar eventos do browser com a função addEventListener()
+Que a função criadora de elementos é .createElement()
+A pegar o valor de um input por meio da propriedade .value
+A acessar os input de um form por meio da propriedade .name
+A adicionar elementos na página e dentro de outros elementos com a função appendChild()
+
+-----------
+
+
+Utilizamos objetos no Javascript como na maioria das linguagens de programação orientadas , aonde os objetos podemos compará-los com objetos da vida real.
+ Um objeto é uma entidade independente, com propriedades e tipos. Compare-o com uma xícara, por exemplo. Uma xícara é um objeto, com propriedades. Uma xícara tem uma cor, uma forma, peso, um material de composição, etc. Da mesma forma, objetos em JavaScript podem ter propriedades, que definem suas características.
+
+As propriedades de um objeto são separadas por um : do seu valor e utilizamos uma vírgula ao final de cada propriedade para separá-la da próxima.
+
+var xicara = {
+    cor: "azul",
+    peso: 125,
+    tipo: "chá"
+};
+
+-------------------
+
+Em JavaScript, todo array possui a função forEach. Passamos para ela uma função por parâmetro, e nessa função fazemos o que quisermos para cada item do array. O item do array é recebido por parâmetro na função interna.
+
+-------------
+
+Com a propriedade innerHTML, podemos editar obter o conteúdo HTML (HTML interno) de um elemento.
+
+Para editar o HTML interno, como o innerHTML é uma propriedade, utilizamos um sinal de igual (=). Fazemos:
+
+ObjetoDeUmElementoHTML.innerHTML = "Novo conteúdo"
+
+E para obter o HTML interno, fazemos:
+
+ObjetoDeUmElementoHTML.innerHTML
+
+var nome = document.querySelector("#nome");
+nome.innerHTML = "Meu nome é Rafael";
+
+-----------------
+
+Neste capítulo vimos:
+
+Mais organização de código, exportando as funções de validação.
+O operador de negação NOT (!)
+Como validar um formulário
+A função push para colocar elementos dentro de um array
+A propriedade innerHTML dos elementos, que foi usada para apagar os itens da <ul>
+O método forEach para percorrer arrays
+
+-----------
+
+Neste capítulo aprendemos:
+
+O novo evento de dblclick
+Como os eventos propagam atráves da página
+A delegação de eventos
+Como animar uma remoção com o setTimeout
+
+------------
+
+Neste capítulo aprendemos:
+
+O novo evento de input
+O truque de deixar invisível adicionando uma classe com display:none
+Como realizar uma busca, escondendo todos os elementos e mostrando apenas aqueles que nos interessam
+Como buscar por apenas um pedaço de uma palavra com as Expressões Regulares em Javascript
+
+
+Mas há um modo de fazer essa comparação sem a necessidade de utilizar expressões regulares! Podemos utilizar a função substring, que recebe dois parâmetros, fazendo com que ela devolva parte da string, com o tamanho definido nos parâmetros. O primeiro parâmetro é o início, começando do 0 (que representa o primeiro caractere). O segundo parâmetro define o fim (exclusivo, mostramos até o penúltimo caractere). Por exemplo:
+
+var string = "Alura";
+var resultado = string.substring(1, 4);
+----------
+
+O objeto XMLHttpRequest é quem é responsável por fazer requisições HTTP assíncronas com Javascript. Apesar de ter o XML no nome hoje em dia este objeto pode trafegar diversos outros tipos de dados além do XML, este nome só se manteve devido a um legado histórico.
+
+E para instanciar um novo Objeto XMLHttpRequest devemos utilizar a sintaxe com a palavrinha new :
+
+var xhr = new XMLHttpRequest();
+*/
