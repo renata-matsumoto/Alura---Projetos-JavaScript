@@ -1,7 +1,5 @@
 export class Cliente  {
-    nome;
-    _cpf;
-
+ 
     //assessor do CPF
     get cpf(){ 
         return this._cpf;
